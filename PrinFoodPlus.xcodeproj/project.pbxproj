@@ -14,6 +14,9 @@
 		56F53DC31F92CB8B0048C807 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56F53DC21F92CB8B0048C807 /* Assets.xcassets */; };
 		56F53DC61F92CB8B0048C807 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56F53DC41F92CB8B0048C807 /* LaunchScreen.storyboard */; };
 		56F53DD11F92CEF90048C807 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56F53DD01F92CEF90048C807 /* GoogleService-Info.plist */; };
+		56F53DD31F9318CE0048C807 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F53DD21F9318CE0048C807 /* MainTabBarController.swift */; };
+		56F53DD51F931AF10048C807 /* DiningController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F53DD41F931AF10048C807 /* DiningController.swift */; };
+		56F53DD71F931B030048C807 /* PubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F53DD61F931B030048C807 /* PubController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		56F53DC51F92CB8B0048C807 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		56F53DC71F92CB8B0048C807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56F53DD01F92CEF90048C807 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		56F53DD21F9318CE0048C807 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		56F53DD41F931AF10048C807 /* DiningController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningController.swift; sourceTree = "<group>"; };
+		56F53DD61F931B030048C807 /* PubController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,11 +88,14 @@
 			children = (
 				56F53DD01F92CEF90048C807 /* GoogleService-Info.plist */,
 				56F53DBB1F92CB8B0048C807 /* AppDelegate.swift */,
+				56F53DD21F9318CE0048C807 /* MainTabBarController.swift */,
 				56F53DBD1F92CB8B0048C807 /* ViewController.swift */,
 				56F53DBF1F92CB8B0048C807 /* Main.storyboard */,
 				56F53DC21F92CB8B0048C807 /* Assets.xcassets */,
 				56F53DC41F92CB8B0048C807 /* LaunchScreen.storyboard */,
 				56F53DC71F92CB8B0048C807 /* Info.plist */,
+				56F53DD41F931AF10048C807 /* DiningController.swift */,
+				56F53DD61F931B030048C807 /* PubController.swift */,
 			);
 			path = PrinFoodPlus;
 			sourceTree = "<group>";
@@ -228,7 +237,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				56F53DBE1F92CB8B0048C807 /* ViewController.swift in Sources */,
+				56F53DD71F931B030048C807 /* PubController.swift in Sources */,
 				56F53DBC1F92CB8B0048C807 /* AppDelegate.swift in Sources */,
+				56F53DD51F931AF10048C807 /* DiningController.swift in Sources */,
+				56F53DD31F9318CE0048C807 /* MainTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
