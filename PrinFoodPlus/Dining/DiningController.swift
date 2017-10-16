@@ -73,12 +73,15 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
         
         switch indexPath.item {
         case 0:
+            cell.mealName = "Breakfast"
             guard let time = todayTimes["breakfast"] as? String else { break }
             cell.timesOpen = time
         case 1:
+            cell.mealName = "Lunch"
             guard let time = todayTimes["lunch"] as? String else { break }
             cell.timesOpen = time
         case 2:
+            cell.mealName = "Dinner"
             guard let time = todayTimes["dinner"] as? String else { break }
             cell.timesOpen = time
         default:
