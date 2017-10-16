@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
 private let reuseIdentifier = "Cell"
 
 class DiningController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +22,34 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
         collectionView?.isScrollEnabled = false
 
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
+        fetchTimes(tomorrow: false)
+        fetchTimes(tomorrow: true)
+    }
+    
+    var todayTimes = [String: Any]()
+    var tomorrowTimes = [String: Any]()
+    fileprivate func fetchTimes(tomorrow: Bool) {
+       
+        guard let dayOfWeek = getDayOfWeek(tomorrow: tomorrow) else { return }
+        Database.database().reference().child("diningTimes").child(dayOfWeek).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let times = snapshot.value as? [String: Any] else { return }
+            if !tomorrow {
+                self.todayTimes = times
+            } else {
+                self.tomorrowTimes = times
+            }
+            
+            self.collectionView?.reloadData()
+
+        }) { (err) in
+            if !tomorrow {
+                print("Failed to fetch dining times for today:", err)
+            } else {
+                print("Failed to fetch dining times for tomorrow:", err)
+            }
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -43,5 +72,30 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
         cell.backgroundColor = .orange
         
         return cell
+    }
+    
+    fileprivate func getDayOfWeek(tomorrow :Bool)->String? {
+        
+        let weekDays: [Int: String] = [1: "Sunday",
+                                       2: "Monday",
+                                       3: "Tuesday",
+                                       4: "Wednesday",
+                                       5: "Thursday",
+                                       6: "Friday",
+                                       7: "Saturday"]
+        
+        let todayDate = NSDate()
+        let myCalendar = Calendar(identifier: .gregorian)
+        var weekDay = myCalendar.component(.weekday, from: todayDate as Date)
+        
+        if tomorrow {
+            if (weekDay == 7){
+                weekDay = 1
+            } else {
+                weekDay += 1
+            }
+        }
+        
+        return weekDays[weekDay]
     }
 }
