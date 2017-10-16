@@ -21,7 +21,7 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
         collectionView?.backgroundColor = .white
         collectionView?.isScrollEnabled = false
 
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(DiningCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         fetchTimes(tomorrow: false)
         fetchTimes(tomorrow: true)
@@ -67,9 +67,23 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! DiningCell
         
         cell.backgroundColor = .orange
+        
+        switch indexPath.item {
+        case 0:
+            guard let time = todayTimes["breakfast"] as? String else { break }
+            cell.timesOpen = time
+        case 1:
+            guard let time = todayTimes["lunch"] as? String else { break }
+            cell.timesOpen = time
+        case 2:
+            guard let time = todayTimes["dinner"] as? String else { break }
+            cell.timesOpen = time
+        default:
+            break
+        }
         
         return cell
     }

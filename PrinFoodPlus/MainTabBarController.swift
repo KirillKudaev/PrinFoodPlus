@@ -1,6 +1,9 @@
 //
 //  MainTabBarController.swift
-//  Confessions
+//  PrinFoodPlus
+//
+//  Created by Kirill Kudaev on 10/14/17.
+//  Copyright © 2017 Kirill Kudaev. All rights reserved.
 //
 
 import UIKit

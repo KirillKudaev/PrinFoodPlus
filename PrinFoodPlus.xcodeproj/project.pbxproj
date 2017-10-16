@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3488094A6FD6892EB341D19D /* Pods_PrinFoodPlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB27D79B4A01843F7F3FCDD /* Pods_PrinFoodPlus.framework */; };
+		569271971F9562270091B976 /* DiningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569271961F9562270091B976 /* DiningCell.swift */; };
+		5692719A1F9564AD0091B976 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569271991F9564AD0091B976 /* Extensions.swift */; };
 		56F53DBC1F92CB8B0048C807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F53DBB1F92CB8B0048C807 /* AppDelegate.swift */; };
 		56F53DC11F92CB8B0048C807 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56F53DBF1F92CB8B0048C807 /* Main.storyboard */; };
 		56F53DC31F92CB8B0048C807 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56F53DC21F92CB8B0048C807 /* Assets.xcassets */; };
@@ -21,6 +23,8 @@
 /* Begin PBXFileReference section */
 		07D708B6E04FEFA4038F6802 /* Pods-PrinFoodPlus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrinFoodPlus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PrinFoodPlus/Pods-PrinFoodPlus.debug.xcconfig"; sourceTree = "<group>"; };
 		2FB27D79B4A01843F7F3FCDD /* Pods_PrinFoodPlus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PrinFoodPlus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		569271961F9562270091B976 /* DiningCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningCell.swift; sourceTree = "<group>"; };
+		569271991F9564AD0091B976 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		56D3F378848DA88BF298F644 /* Pods-PrinFoodPlus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrinFoodPlus.release.xcconfig"; path = "Pods/Target Support Files/Pods-PrinFoodPlus/Pods-PrinFoodPlus.release.xcconfig"; sourceTree = "<group>"; };
 		56F53DB81F92CB8B0048C807 /* PrinFoodPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrinFoodPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56F53DBB1F92CB8B0048C807 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +67,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		569271981F9564270091B976 /* Dining */ = {
+			isa = PBXGroup;
+			children = (
+				56F53DD41F931AF10048C807 /* DiningController.swift */,
+				569271961F9562270091B976 /* DiningCell.swift */,
+			);
+			path = Dining;
+			sourceTree = "<group>";
+		};
+		5692719B1F9564C90091B976 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				569271991F9564AD0091B976 /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		56F53DAF1F92CB8B0048C807 = {
 			isa = PBXGroup;
 			children = (
@@ -84,15 +105,16 @@
 		56F53DBA1F92CB8B0048C807 /* PrinFoodPlus */ = {
 			isa = PBXGroup;
 			children = (
-				56F53DD01F92CEF90048C807 /* GoogleService-Info.plist */,
+				569271981F9564270091B976 /* Dining */,
 				56F53DBB1F92CB8B0048C807 /* AppDelegate.swift */,
 				56F53DD21F9318CE0048C807 /* MainTabBarController.swift */,
-				56F53DBF1F92CB8B0048C807 /* Main.storyboard */,
-				56F53DC21F92CB8B0048C807 /* Assets.xcassets */,
-				56F53DC41F92CB8B0048C807 /* LaunchScreen.storyboard */,
-				56F53DC71F92CB8B0048C807 /* Info.plist */,
-				56F53DD41F931AF10048C807 /* DiningController.swift */,
 				56F53DD61F931B030048C807 /* PubController.swift */,
+				56F53DBF1F92CB8B0048C807 /* Main.storyboard */,
+				56F53DC41F92CB8B0048C807 /* LaunchScreen.storyboard */,
+				5692719B1F9564C90091B976 /* Utils */,
+				56F53DC21F92CB8B0048C807 /* Assets.xcassets */,
+				56F53DD01F92CEF90048C807 /* GoogleService-Info.plist */,
+				56F53DC71F92CB8B0048C807 /* Info.plist */,
 			);
 			path = PrinFoodPlus;
 			sourceTree = "<group>";
@@ -234,7 +256,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				56F53DD71F931B030048C807 /* PubController.swift in Sources */,
+				5692719A1F9564AD0091B976 /* Extensions.swift in Sources */,
 				56F53DBC1F92CB8B0048C807 /* AppDelegate.swift in Sources */,
+				569271971F9562270091B976 /* DiningCell.swift in Sources */,
 				56F53DD51F931AF10048C807 /* DiningController.swift in Sources */,
 				56F53DD31F9318CE0048C807 /* MainTabBarController.swift in Sources */,
 			);
