@@ -31,7 +31,7 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
     var tomorrowTimes = [String: Any]()
     fileprivate func fetchTimes(tomorrow: Bool) {
        
-        guard let dayOfWeek = getDayOfWeek(tomorrow: tomorrow) else { return }
+        guard let dayOfWeek = Date.getDayOfWeek(tomorrow: tomorrow) else { return }
         Database.database().reference().child("diningTimes").child(dayOfWeek).observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let times = snapshot.value as? [String: Any] else { return }
@@ -111,28 +111,5 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
         navigationController?.pushViewController(menuController, animated: true)
     }
     
-    fileprivate func getDayOfWeek(tomorrow :Bool)->String? {
-        
-        let weekDays: [Int: String] = [1: "Sunday",
-                                       2: "Monday",
-                                       3: "Tuesday",
-                                       4: "Wednesday",
-                                       5: "Thursday",
-                                       6: "Friday",
-                                       7: "Saturday"]
-        
-        let todayDate = NSDate()
-        let myCalendar = Calendar(identifier: .gregorian)
-        var weekDay = myCalendar.component(.weekday, from: todayDate as Date)
-        
-        if tomorrow {
-            if (weekDay == 7){
-                weekDay = 1
-            } else {
-                weekDay += 1
-            }
-        }
-        
-        return weekDays[weekDay]
-    }
+    
 }
