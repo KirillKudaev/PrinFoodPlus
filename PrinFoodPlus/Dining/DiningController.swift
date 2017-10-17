@@ -16,7 +16,7 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = "Dining"
+        self.navigationItem.title = "Dining Room"
 
         collectionView?.backgroundColor = .white
         collectionView?.isScrollEnabled = false
@@ -89,6 +89,26 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
         }
         
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let menuController = MenuController(collectionViewLayout: UICollectionViewFlowLayout())
+
+        switch indexPath.item {
+        case 0:
+            menuController.navigationItem.title = "Breakfast"
+            menuController.mealName = "Breakfast"
+        case 1:
+            menuController.navigationItem.title = "Lunch"
+            menuController.mealName = "Lunch"
+        case 2:
+            menuController.navigationItem.title = "Dinner"
+            menuController.mealName = "Dinner"
+        default:
+            break
+        }
+        
+        navigationController?.pushViewController(menuController, animated: true)
     }
     
     fileprivate func getDayOfWeek(tomorrow :Bool)->String? {
