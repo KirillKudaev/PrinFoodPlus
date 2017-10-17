@@ -24,7 +24,7 @@ class DiningCell: UICollectionViewCell {
     
     let mealNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.systemFont(ofSize: 36)
         return label
     }()
     
@@ -41,8 +41,13 @@ class DiningCell: UICollectionViewCell {
         addSubview(mealNameLabel)
         addSubview(timesOpenLabel)
         
-        mealNameLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 60, paddingLeft: 80, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        timesOpenLabel.anchor(top: mealNameLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 30, paddingLeft: 80, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        mealNameLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 50, paddingLeft: 40, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        timesOpenLabel.anchor(top: mealNameLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 15, paddingLeft: 40, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        let separatorView = UIView()
+        separatorView.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        addSubview(separatorView)
+        separatorView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
     }
     
     @available(*, unavailable)

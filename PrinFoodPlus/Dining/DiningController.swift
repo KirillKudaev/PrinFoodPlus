@@ -57,20 +57,19 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let height = (view.frame.height - 98 - 2) / 3
+        let height = (view.frame.height - UIApplication.shared.statusBarFrame.height -
+            self.navigationController!.navigationBar.frame.height - (self.tabBarController?.tabBar.frame.height)!) / 3
         return CGSize(width: view.frame.width, height: height)
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! DiningCell
-        
-        cell.backgroundColor = .orange
-        
+                
         switch indexPath.item {
         case 0:
             cell.mealName = "Breakfast"
