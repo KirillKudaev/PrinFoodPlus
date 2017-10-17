@@ -30,7 +30,9 @@ class MenuController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         guard var mealName = mealName else { return }
         mealName = mealName.lowercased()
-        Database.database().reference().child("meals").child(String(getEpochToday())).child(mealName).observeSingleEvent(of: .value, with: { (snapshot) in
+       
+            guard let epoch = Date.getEpochBeginningOfToday() else { return }
+        Database.database().reference().child("meals").child(String(epoch)).child(mealName).observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             
@@ -74,21 +76,5 @@ class MenuController: UICollectionViewController, UICollectionViewDelegateFlowLa
         cell.dishType = dishes[indexPath.item].type
         
         return cell
-    }
-    
-    func getEpochToday() -> Int {
-        let date = Date()
-        let calendar = Calendar.current
-        var dateComponents = DateComponents()
-
-        dateComponents.day = calendar.component(.day, from: date)
-        dateComponents.month = calendar.component(.month, from: date)
-        dateComponents.year = calendar.component(.year, from: date)
-        
-        let dateTime = Calendar.current.date(from: dateComponents)
-        
-        guard let timeInterval = dateTime?.timeIntervalSince1970 else { return 0 }
-        
-        return Int((timeInterval * 1000.0).rounded())
     }
 }

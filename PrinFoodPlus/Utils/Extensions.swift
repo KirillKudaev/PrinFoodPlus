@@ -64,4 +64,20 @@ extension Date {
         
         return weekDays[weekDay]
     }
+    
+    static func getEpochBeginningOfToday() -> Int? {
+        let date = Date()
+        let calendar = Calendar.current
+        var dateComponents = DateComponents()
+        
+        dateComponents.day = calendar.component(.day, from: date)
+        dateComponents.month = calendar.component(.month, from: date)
+        dateComponents.year = calendar.component(.year, from: date)
+        
+        let dateTime = Calendar.current.date(from: dateComponents)
+        
+        guard let timeInterval = dateTime?.timeIntervalSince1970 else { return nil }
+        
+        return Int((timeInterval * 1000.0).rounded())
+    }
 }
