@@ -44,6 +44,8 @@ class MenuController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 return d1.course < d2.course
             })
             
+            self.dishes.append(Dish(name: "🌱 - Vegetarian  🌿 - Vegan", dictionary: [String: Any]()))
+
             self.collectionView?.reloadData()
         }) { (err) in
             print("Failed to fetch menu:", err)
@@ -66,10 +68,9 @@ class MenuController: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MenuCell
         
-        cell.backgroundColor = .orange
+        cell.backgroundColor = .gray
         
-        cell.dishName = "\(dishes[indexPath.item].name) (T:\(dishes[indexPath.item].type) C:\(dishes[indexPath.item].course))"
-        
+        cell.dishName = dishes[indexPath.item].name
         cell.dishType = dishes[indexPath.item].type
         
         return cell
