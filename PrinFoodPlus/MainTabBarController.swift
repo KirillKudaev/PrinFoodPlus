@@ -18,9 +18,9 @@ class MainTabBarController: UITabBarController {
     
     func setupViewControllers() {
         
-        let homeNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "home_unselected"), selectedImage: #imageLiteral(resourceName: "home_selected"), rootViewController: DiningController(collectionViewLayout: UICollectionViewFlowLayout()))
+        let homeNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "dining_unselected"), selectedImage: #imageLiteral(resourceName: "dining_selected"), rootViewController: DiningController(collectionViewLayout: UICollectionViewFlowLayout()))
         
-        let userProfileNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "home_unselected"), selectedImage: #imageLiteral(resourceName: "home_selected"), rootViewController: PubController(collectionViewLayout: UICollectionViewFlowLayout()))
+        let userProfileNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "burger_unselected"), selectedImage: #imageLiteral(resourceName: "burger_selected"), rootViewController: PubController(collectionViewLayout: UICollectionViewFlowLayout()))
         
         tabBar.tintColor = .black
         
