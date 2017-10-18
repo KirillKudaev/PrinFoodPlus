@@ -24,7 +24,6 @@ class MenuCell: UICollectionViewCell {
             }
             
             dishNameLabel.text = "\(dishName ?? "") \(dishEmoji ?? "")"
-            
         }
     }
     
@@ -47,7 +46,7 @@ class MenuCell: UICollectionViewCell {
 
     let dishNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.light)
         label.textAlignment = .center
         return label
     }()

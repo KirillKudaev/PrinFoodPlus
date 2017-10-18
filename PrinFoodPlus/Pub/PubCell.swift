@@ -24,14 +24,14 @@ class PubCell: UICollectionViewCell {
     
     let mealNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 36)
+        label.font = UIFont.systemFont(ofSize: 36, weight: UIFont.Weight.light)
         return label
     }()
     
     let timesOpenLabel: UILabel = {
         let label = UILabel()
         label.text = "Couldn't download the times"
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.semibold)
         return label
     }()
     
