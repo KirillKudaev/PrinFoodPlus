@@ -1,14 +1,14 @@
 //
-//  DiningCell.swift
+//  PubCell.swift
 //  PrinFoodPlus
 //
-//  Created by Kirill Kudaev on 10/16/17.
+//  Created by Kirill Kudaev on 10/17/17.
 //  Copyright © 2017 Kirill Kudaev. All rights reserved.
 //
 
 import UIKit
 
-class DiningCell: UICollectionViewCell {
+class PubCell: UICollectionViewCell {
     
     var mealName: String? {
         didSet {
@@ -31,28 +31,14 @@ class DiningCell: UICollectionViewCell {
     let timesOpenLabel: UILabel = {
         let label = UILabel()
         label.text = "Couldn't download the times"
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
-    }()
-    
-    let arrowImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
-        iv.image = #imageLiteral(resourceName: "arrow_right")
-        return iv
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setupLabels()
         setupSeparatorView()
-
-        addSubview(arrowImageView)
-        
-        arrowImageView.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 30, width: 30, height: 30)
-        arrowImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
     @available(*, unavailable)
@@ -68,7 +54,7 @@ class DiningCell: UICollectionViewCell {
         stackView.distribution = .fillProportionally
         
         self.addSubview(stackView)
-        stackView.anchor(top: nil, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 40, paddingLeft: 15, paddingBottom: 0, paddingRight: 80, width: 0, height: 0)
+        stackView.anchor(top: nil, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 40, paddingLeft: 15, paddingBottom: 0, paddingRight: 10, width: 0, height: 0)
         stackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     

@@ -1,27 +1,28 @@
 //
-//  DiningController.swift
+//  PubController.swift
 //  PrinFoodPlus
 //
 //  Created by Kirill Kudaev on 10/14/17.
 //  Copyright © 2017 Kirill Kudaev. All rights reserved.
 //
 
+
 import UIKit
 import Firebase
 
 private let reuseIdentifier = "Cell"
 
-class DiningController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class PubController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.navigationItem.title = "Dining Room"
-
+        
+        self.navigationItem.title = "Pub"
+        
         collectionView?.backgroundColor = .white
         collectionView?.isScrollEnabled = false
-
-        self.collectionView!.register(DiningCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
+        self.collectionView!.register(PubCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         fetchTimes(tomorrow: false)
         fetchTimes(tomorrow: true)
@@ -30,9 +31,9 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
     var todayTimes = [String: Any]()
     var tomorrowTimes = [String: Any]()
     fileprivate func fetchTimes(tomorrow: Bool) {
-       
+        
         guard let dayOfWeek = Date.getDayOfWeek(tomorrow: tomorrow) else { return }
-        Database.database().reference().child("diningTimes").child(dayOfWeek).observeSingleEvent(of: .value, with: { (snapshot) in
+        Database.database().reference().child("pubTimes").child(dayOfWeek).observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let times = snapshot.value as? [String: Any] else { return }
             if !tomorrow {
@@ -42,7 +43,7 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
             }
             
             self.collectionView?.reloadData()
-
+            
         }) { (err) in
             if !tomorrow {
                 print("Failed to fetch dining times for today:", err)
@@ -68,8 +69,8 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! DiningCell
-                
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PubCell
+        
         switch indexPath.item {
         case 0:
             cell.mealName = "Breakfast"
@@ -88,25 +89,5 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
         }
         
         return cell
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let menuController = MenuController(collectionViewLayout: UICollectionViewFlowLayout())
-
-        switch indexPath.item {
-        case 0:
-            menuController.navigationItem.title = "Breakfast"
-            menuController.mealName = "Breakfast"
-        case 1:
-            menuController.navigationItem.title = "Lunch"
-            menuController.mealName = "Lunch"
-        case 2:
-            menuController.navigationItem.title = "Dinner"
-            menuController.mealName = "Dinner"
-        default:
-            break
-        }
-        
-        navigationController?.pushViewController(menuController, animated: true)
     }
 }

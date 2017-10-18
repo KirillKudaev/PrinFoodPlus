@@ -55,20 +55,23 @@ class MenuCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
+        setupSeparatorView()
+
         addSubview(dishNameLabel)
-        
-        let separatorView = UIView()
-        separatorView.backgroundColor = UIColor(white: 0, alpha: 0.5)
-        addSubview(separatorView)
         
         dishNameLabel.anchor(top: nil, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 15, paddingBottom: 0, paddingRight: 15, width: 0, height: 0)
         dishNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-
-        separatorView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
     }
     
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    fileprivate func setupSeparatorView() {
+        let separatorView = UIView()
+        separatorView.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        addSubview(separatorView)
+        separatorView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
     }
 }

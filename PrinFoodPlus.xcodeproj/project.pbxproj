@@ -11,6 +11,7 @@
 		56010B361F9581DD00DA639B /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56010B351F9581DD00DA639B /* MenuCell.swift */; };
 		56010B381F9581EE00DA639B /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56010B371F9581EE00DA639B /* MenuController.swift */; };
 		56010B3C1F958F6D00DA639B /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56010B3B1F958F6D00DA639B /* Dish.swift */; };
+		56010B3E1F96F42900DA639B /* PubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56010B3D1F96F42900DA639B /* PubCell.swift */; };
 		569271971F9562270091B976 /* DiningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569271961F9562270091B976 /* DiningCell.swift */; };
 		5692719A1F9564AD0091B976 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569271991F9564AD0091B976 /* Extensions.swift */; };
 		56F53DBC1F92CB8B0048C807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F53DBB1F92CB8B0048C807 /* AppDelegate.swift */; };
@@ -29,6 +30,7 @@
 		56010B351F9581DD00DA639B /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		56010B371F9581EE00DA639B /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		56010B3B1F958F6D00DA639B /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
+		56010B3D1F96F42900DA639B /* PubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubCell.swift; sourceTree = "<group>"; };
 		569271961F9562270091B976 /* DiningCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningCell.swift; sourceTree = "<group>"; };
 		569271991F9564AD0091B976 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		56D3F378848DA88BF298F644 /* Pods-PrinFoodPlus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrinFoodPlus.release.xcconfig"; path = "Pods/Target Support Files/Pods-PrinFoodPlus/Pods-PrinFoodPlus.release.xcconfig"; sourceTree = "<group>"; };
@@ -90,6 +92,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		56010B401F96F44700DA639B /* Pub */ = {
+			isa = PBXGroup;
+			children = (
+				56F53DD61F931B030048C807 /* PubController.swift */,
+				56010B3D1F96F42900DA639B /* PubCell.swift */,
+			);
+			path = Pub;
+			sourceTree = "<group>";
+		};
 		569271981F9564270091B976 /* Dining */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,10 +141,10 @@
 			children = (
 				569271981F9564270091B976 /* Dining */,
 				56010B391F95821000DA639B /* Menu */,
+				56010B401F96F44700DA639B /* Pub */,
 				56010B3A1F958F5F00DA639B /* Models */,
 				56F53DBB1F92CB8B0048C807 /* AppDelegate.swift */,
 				56F53DD21F9318CE0048C807 /* MainTabBarController.swift */,
-				56F53DD61F931B030048C807 /* PubController.swift */,
 				56F53DBF1F92CB8B0048C807 /* Main.storyboard */,
 				56F53DC41F92CB8B0048C807 /* LaunchScreen.storyboard */,
 				5692719B1F9564C90091B976 /* Utils */,
@@ -287,6 +298,7 @@
 				569271971F9562270091B976 /* DiningCell.swift in Sources */,
 				56F53DD51F931AF10048C807 /* DiningController.swift in Sources */,
 				56010B3C1F958F6D00DA639B /* Dish.swift in Sources */,
+				56010B3E1F96F42900DA639B /* PubCell.swift in Sources */,
 				56F53DD31F9318CE0048C807 /* MainTabBarController.swift in Sources */,
 				56010B361F9581DD00DA639B /* MenuCell.swift in Sources */,
 			);
