@@ -35,15 +35,24 @@ class DiningCell: UICollectionViewCell {
         return label
     }()
     
+    let arrowImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        iv.image = #imageLiteral(resourceName: "arrow_right")
+        return iv
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubview(mealNameLabel)
-        addSubview(timesOpenLabel)
+        setupLabels()
+
+        addSubview(arrowImageView)
         
-        mealNameLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 50, paddingLeft: 40, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        timesOpenLabel.anchor(top: mealNameLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 15, paddingLeft: 40, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
+        arrowImageView.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 30, width: 30, height: 30)
+        arrowImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+
         let separatorView = UIView()
         separatorView.backgroundColor = UIColor(white: 0, alpha: 0.5)
         addSubview(separatorView)
@@ -53,5 +62,17 @@ class DiningCell: UICollectionViewCell {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    fileprivate func setupLabels() {
+        let stackView = UIStackView(arrangedSubviews: [mealNameLabel, timesOpenLabel])
+        
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        stackView.distribution = .fillProportionally
+        
+        self.addSubview(stackView)
+        stackView.anchor(top: nil, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 40, paddingLeft: 15, paddingBottom: 0, paddingRight: 80, width: 0, height: 0)
+        stackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
 }
