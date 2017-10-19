@@ -58,6 +58,8 @@ class MenuCell: UICollectionViewCell {
 
         addSubview(dishNameLabel)
         
+        setUpDishLabelToAutoAdjustFontSize()
+        
         dishNameLabel.anchor(top: nil, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 15, paddingBottom: 0, paddingRight: 15, width: 0, height: 0)
         dishNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
@@ -72,5 +74,11 @@ class MenuCell: UICollectionViewCell {
         separatorView.backgroundColor = UIColor(white: 0, alpha: 0.5)
         addSubview(separatorView)
         separatorView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
+    }
+    
+    fileprivate func setUpDishLabelToAutoAdjustFontSize() {
+        dishNameLabel.numberOfLines = 1
+        dishNameLabel.adjustsFontSizeToFitWidth = true
+        dishNameLabel.minimumScaleFactor = 0.2
     }
 }
