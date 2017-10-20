@@ -30,7 +30,7 @@ class PubCell: UICollectionViewCell {
     
     let timesOpenLabel: UILabel = {
         let label = UILabel()
-        label.text = "Couldn't download the times"
+        label.text = "Couldn't download time"
         label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.semibold)
         return label
     }()

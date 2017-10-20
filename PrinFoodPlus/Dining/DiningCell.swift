@@ -30,7 +30,7 @@ class DiningCell: UICollectionViewCell {
     
     let timesOpenLabel: UILabel = {
         let label = UILabel()
-        label.text = "Couldn't download the times"
+        label.text = "Couldn't download time"
         label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.semibold)
         return label
     }()
