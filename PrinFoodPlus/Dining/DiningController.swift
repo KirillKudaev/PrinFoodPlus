@@ -25,6 +25,8 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
         
         fetchTimes(tomorrow: false)
         fetchTimes(tomorrow: true)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
     
     var todayTimes = [String: Any]()
@@ -50,6 +52,11 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
                 print("Failed to fetch dining times for tomorrow:", err)
             }
         }
+    }
+    
+    @objc func willEnterForeground() {
+        fetchTimes(tomorrow: false)
+        fetchTimes(tomorrow: true)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

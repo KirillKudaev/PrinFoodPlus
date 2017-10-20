@@ -26,6 +26,13 @@ class PubController: UICollectionViewController, UICollectionViewDelegateFlowLay
         
         fetchTimes(tomorrow: false)
         fetchTimes(tomorrow: true)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+    }
+    
+    @objc func willEnterForeground() {
+        fetchTimes(tomorrow: false)
+        fetchTimes(tomorrow: true)
     }
     
     var todayTimes = [String: Any]()
