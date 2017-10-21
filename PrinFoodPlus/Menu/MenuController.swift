@@ -30,8 +30,8 @@ class MenuController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         guard var mealName = mealName else { return }
         mealName = mealName.lowercased()
-       
-            guard let epoch = Date.getEpochBeginningOfToday() else { return }
+        
+        guard let epoch = Date.getEpochBeginningOfToday() else { return }
         Database.database().reference().child("meals").child(String(epoch)).child(mealName).observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
@@ -47,7 +47,7 @@ class MenuController: UICollectionViewController, UICollectionViewDelegateFlowLa
             })
             
             self.dishes.append(Dish(name: "🌱 - Vegetarian  🌿 - Vegan", dictionary: [String: Any]()))
-
+            
             self.collectionView?.reloadData()
         }) { (err) in
             print("Failed to fetch menu:", err)
@@ -55,7 +55,11 @@ class MenuController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dishes.count
+        if (dishes.count  == 0) {
+            return 1
+        } else {
+           return dishes.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -69,10 +73,14 @@ class MenuController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MenuCell
-                
-        cell.dishName = dishes[indexPath.item].name
-        cell.dishType = dishes[indexPath.item].type
         
+        if (dishes.count  == 0) {
+            cell.dishName = "Couldn't download menu 😔"
+        } else {
+            cell.dishName = dishes[indexPath.item].name
+            cell.dishType = dishes[indexPath.item].type
+        }
+    
         return cell
     }
 }
