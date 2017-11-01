@@ -40,7 +40,7 @@ extension UIView {
 }
 
 extension Date {
-    static func getDayOfWeek(tomorrow :Bool)->String? {
+    static func getDayOfWeek(tomorrow: Bool) -> String? {
         
         let weekDays: [Int: String] = [1: "Sunday",
                                        2: "Monday",
@@ -73,6 +73,7 @@ extension Date {
         dateComponents.day = calendar.component(.day, from: date)
         dateComponents.month = calendar.component(.month, from: date)
         dateComponents.year = calendar.component(.year, from: date)
+        dateComponents.timeZone = TimeZone(abbreviation: "CST")
         
         let dateTime = Calendar.current.date(from: dateComponents)
         
