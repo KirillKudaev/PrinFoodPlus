@@ -22,7 +22,8 @@ class MainTabBarController: UITabBarController {
         
         let userProfileNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "burger_unselected"), selectedImage: #imageLiteral(resourceName: "burger_selected"), rootViewController: PubController(collectionViewLayout: UICollectionViewFlowLayout()))
         
-        tabBar.tintColor = .black
+        tabBar.tintColor = .white
+        tabBar.barTintColor = UIColor.mainBlue()
         
         viewControllers = [homeNavController,
                            userProfileNavController]
@@ -37,6 +38,9 @@ class MainTabBarController: UITabBarController {
     fileprivate func templateNavController(unselectedImage: UIImage, selectedImage: UIImage, rootViewController: UIViewController = UIViewController()) -> UINavigationController {
         let viewController = rootViewController
         let navController = UINavigationController(rootViewController: viewController)
+        navController.navigationBar.barTintColor = UIColor.mainBlue()
+        navController.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        navController.navigationBar.tintColor = .white
         navController.tabBarItem.image = unselectedImage
         navController.tabBarItem.selectedImage = selectedImage
         return navController

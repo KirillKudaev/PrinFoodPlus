@@ -20,6 +20,9 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
 
         collectionView?.backgroundColor = .white
         collectionView?.isScrollEnabled = false
+        
+        collectionView?.backgroundView = UIImageView(image: UIImage(named: "smoothie"))
+        collectionView?.backgroundView?.contentMode = .scaleAspectFill
 
         self.collectionView!.register(DiningCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         

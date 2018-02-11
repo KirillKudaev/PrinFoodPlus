@@ -73,7 +73,7 @@ class MenuCell: UICollectionViewCell {
         let separatorView = UIView()
         separatorView.backgroundColor = UIColor(white: 0, alpha: 0.5)
         addSubview(separatorView)
-        separatorView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
+        separatorView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 14, paddingBottom: 0, paddingRight: 14, width: 0, height: 0.5)
     }
     
     fileprivate func setUpDishLabelToAutoAdjustFontSize() {

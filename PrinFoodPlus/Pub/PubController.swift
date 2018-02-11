@@ -22,6 +22,9 @@ class PubController: UICollectionViewController, UICollectionViewDelegateFlowLay
         collectionView?.backgroundColor = .white
         collectionView?.isScrollEnabled = false
         
+        collectionView?.backgroundView = UIImageView(image: UIImage(named: "fries"))
+        collectionView?.backgroundView?.contentMode = .scaleAspectFill
+
         self.collectionView!.register(PubCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         fetchTimes(tomorrow: false)

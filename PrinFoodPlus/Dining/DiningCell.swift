@@ -25,6 +25,7 @@ class DiningCell: UICollectionViewCell {
     let mealNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 36, weight: UIFont.Weight.light)
+        label.textColor = .white
         return label
     }()
     
@@ -32,6 +33,7 @@ class DiningCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "Couldn't download time"
         label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.semibold)
+        label.textColor = .white
         return label
     }()
     
@@ -74,8 +76,8 @@ class DiningCell: UICollectionViewCell {
     
     fileprivate func setupSeparatorView() {
         let separatorView = UIView()
-        separatorView.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        separatorView.backgroundColor = .white
         addSubview(separatorView)
-        separatorView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
+        separatorView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0.5)
     }
 }
