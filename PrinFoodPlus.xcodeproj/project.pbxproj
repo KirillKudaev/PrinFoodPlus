@@ -461,6 +461,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S96ZUR62V7;
 				INFOPLIST_FILE = PrinFoodPlus/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kirillkudaev.prinfoodplus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -477,6 +478,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S96ZUR62V7;
 				INFOPLIST_FILE = PrinFoodPlus/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kirillkudaev.prinfoodplus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
