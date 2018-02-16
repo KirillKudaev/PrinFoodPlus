@@ -7,29 +7,76 @@
 //
 
 import UIKit
+import Firebase
 
-class FeedbackController: UIViewController {
+class FeedbackController: UIViewController, UITextViewDelegate {
 
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var feedbackTextView: UITextView!
+    var placeholderLabel : UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.title = "Feedback"
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(sendFeedback))
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancel))
+        
+        self.emailTextField.becomeFirstResponder()
+        
+        self.hideKeyboardWhenTappedAround()
+        
+        feedbackTextView.delegate = self
+        
+        getNavBarTitleFromFirebase()
+        
+        placeholderLabel = UILabel()
+        placeholderLabel.text = "Tell us what you think!"
+        placeholderLabel.font = UIFont.systemFont(ofSize: (feedbackTextView.font?.pointSize)!)
+        placeholderLabel.sizeToFit()
+        feedbackTextView.addSubview(placeholderLabel)
+        placeholderLabel.frame.origin = CGPoint(x: 5, y: (feedbackTextView.font?.pointSize)! / 2)
+        placeholderLabel.textColor = UIColor.lightGray
+        placeholderLabel.isHidden = !feedbackTextView.text.isEmpty
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    private func getNavBarTitleFromFirebase() {
+        Database.database().reference().child("feedbackScreenTitle").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let dictionary = snapshot.value as? [String: String] else { return }
+            
+            self.navigationItem.title = dictionary["title"]
+            
+            self.clearForm()
+            
+        }) { (err) in
+            
+            self.createOkAlert(title: "Error", message: "Try again")
+            
+            self.clearForm()
+        }
     }
-    */
-
+    
+    internal func textViewDidChange(_ textView: UITextView) {
+        placeholderLabel.isHidden = !textView.text.isEmpty
+    }
+    
+    @objc private func sendFeedback() {
+        self.view.endEditing(true)
+        
+        
+        
+    }
+    
+    private func clearForm() {
+        emailTextField.text = ""
+        feedbackTextView.text = ""
+        placeholderLabel.isHidden = false
+    }
+    
+    @objc private func cancel() {
+        self.view.endEditing(true)
+    }
 }
