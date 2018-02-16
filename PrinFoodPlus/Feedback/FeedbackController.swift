@@ -13,24 +13,26 @@ class FeedbackController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var feedbackTextView: UITextView!
-    var placeholderLabel : UILabel!
+    private var placeholderLabel : UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        feedbackTextView.delegate = self
+
         self.navigationItem.title = "Feedback"
+        getNavBarTitleFromFirebase()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(sendFeedback))
-        
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancel))
         
         self.emailTextField.becomeFirstResponder()
-        
         self.hideKeyboardWhenTappedAround()
         
-        feedbackTextView.delegate = self
-        
-        getNavBarTitleFromFirebase()
+        setUpPlaceholderLabel()
+    }
+    
+    private func setUpPlaceholderLabel() {
         
         placeholderLabel = UILabel()
         placeholderLabel.text = "Tell us what you think!"
@@ -43,19 +45,14 @@ class FeedbackController: UIViewController, UITextViewDelegate {
     }
     
     private func getNavBarTitleFromFirebase() {
+        
         Database.database().reference().child("feedbackScreenTitle").observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let dictionary = snapshot.value as? [String: String] else { return }
-            
             self.navigationItem.title = dictionary["title"]
             
-            self.clearForm()
-            
         }) { (err) in
-            
-            self.createOkAlert(title: "Error", message: "Try again")
-            
-            self.clearForm()
+            print(err)
         }
     }
     
@@ -66,8 +63,33 @@ class FeedbackController: UIViewController, UITextViewDelegate {
     @objc private func sendFeedback() {
         self.view.endEditing(true)
         
+        guard let feedbackContent = feedbackTextView.text, feedbackTextView.text.count > 0 else {
+            
+            self.createOkAlert(title: "Error in form", message: "Can't send an empty message")
+            return
+        }
         
+        let feedback = Feedback(content: feedbackContent, email: emailTextField.text)
         
+        let values: [String: String]
+        
+        if (feedback.email != nil) {
+            values = ["content": feedback.content, "email": feedback.email!]
+        } else {
+            values = ["content": feedback.content]
+        }
+        
+        let feedbackRef = Database.database().reference().child("posts")
+        let ref = feedbackRef.childByAutoId()
+        
+        ref.updateChildValues(values) { (err, ref) in
+            if err != nil {
+                self.createOkAlert(title: "Uh-oh...", message: "Couldn't send feedback")
+            } else {
+                self.clearForm()
+                self.createOkAlert(title: "Thank you!", message: "We received your feedback")
+            }
+        }
     }
     
     private func clearForm() {
