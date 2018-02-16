@@ -20,12 +20,15 @@ class MainTabBarController: UITabBarController {
         
         let homeNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "dining_unselected"), selectedImage: #imageLiteral(resourceName: "dining_selected"), rootViewController: DiningController(collectionViewLayout: UICollectionViewFlowLayout()))
         
+        let feedbackNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "feedback_unselected"), selectedImage: #imageLiteral(resourceName: "feedback_selected"), rootViewController: FeedbackController())
+        
         let userProfileNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "burger_unselected"), selectedImage: #imageLiteral(resourceName: "burger_selected"), rootViewController: PubController(collectionViewLayout: UICollectionViewFlowLayout()))
         
         tabBar.tintColor = .white
         tabBar.barTintColor = UIColor.mainBlue()
         
         viewControllers = [homeNavController,
+                           feedbackNavController,
                            userProfileNavController]
         
         guard let items = tabBar.items else { return }

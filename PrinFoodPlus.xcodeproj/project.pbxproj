@@ -12,6 +12,8 @@
 		56010B381F9581EE00DA639B /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56010B371F9581EE00DA639B /* MenuController.swift */; };
 		56010B3C1F958F6D00DA639B /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56010B3B1F958F6D00DA639B /* Dish.swift */; };
 		56010B3E1F96F42900DA639B /* PubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56010B3D1F96F42900DA639B /* PubCell.swift */; };
+		56559C4420367B3000E5527E /* FeedbackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56559C4220367B3000E5527E /* FeedbackController.swift */; };
+		56559C4520367B3000E5527E /* FeedbackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56559C4320367B3000E5527E /* FeedbackController.xib */; };
 		569271971F9562270091B976 /* DiningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569271961F9562270091B976 /* DiningCell.swift */; };
 		5692719A1F9564AD0091B976 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569271991F9564AD0091B976 /* Extensions.swift */; };
 		56F53DBC1F92CB8B0048C807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F53DBB1F92CB8B0048C807 /* AppDelegate.swift */; };
@@ -31,6 +33,8 @@
 		56010B371F9581EE00DA639B /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		56010B3B1F958F6D00DA639B /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		56010B3D1F96F42900DA639B /* PubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubCell.swift; sourceTree = "<group>"; };
+		56559C4220367B3000E5527E /* FeedbackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackController.swift; sourceTree = "<group>"; };
+		56559C4320367B3000E5527E /* FeedbackController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackController.xib; sourceTree = "<group>"; };
 		569271961F9562270091B976 /* DiningCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningCell.swift; sourceTree = "<group>"; };
 		569271991F9564AD0091B976 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		56D3F378848DA88BF298F644 /* Pods-PrinFoodPlus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrinFoodPlus.release.xcconfig"; path = "Pods/Target Support Files/Pods-PrinFoodPlus/Pods-PrinFoodPlus.release.xcconfig"; sourceTree = "<group>"; };
@@ -101,6 +105,15 @@
 			path = Pub;
 			sourceTree = "<group>";
 		};
+		56559C4620367B3900E5527E /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				56559C4220367B3000E5527E /* FeedbackController.swift */,
+				56559C4320367B3000E5527E /* FeedbackController.xib */,
+			);
+			path = Feedback;
+			sourceTree = "<group>";
+		};
 		569271981F9564270091B976 /* Dining */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +154,7 @@
 			children = (
 				569271981F9564270091B976 /* Dining */,
 				56010B391F95821000DA639B /* Menu */,
+				56559C4620367B3900E5527E /* Feedback */,
 				56010B401F96F44700DA639B /* Pub */,
 				56010B3A1F958F5F00DA639B /* Models */,
 				56F53DBB1F92CB8B0048C807 /* AppDelegate.swift */,
@@ -221,6 +235,7 @@
 				56F53DD11F92CEF90048C807 /* GoogleService-Info.plist in Resources */,
 				56F53DC31F92CB8B0048C807 /* Assets.xcassets in Resources */,
 				56F53DC11F92CB8B0048C807 /* Main.storyboard in Resources */,
+				56559C4520367B3000E5527E /* FeedbackController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +308,7 @@
 			files = (
 				56F53DD71F931B030048C807 /* PubController.swift in Sources */,
 				56010B381F9581EE00DA639B /* MenuController.swift in Sources */,
+				56559C4420367B3000E5527E /* FeedbackController.swift in Sources */,
 				5692719A1F9564AD0091B976 /* Extensions.swift in Sources */,
 				56F53DBC1F92CB8B0048C807 /* AppDelegate.swift in Sources */,
 				569271971F9562270091B976 /* DiningCell.swift in Sources */,
