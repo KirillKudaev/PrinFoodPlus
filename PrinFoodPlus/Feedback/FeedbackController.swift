@@ -26,10 +26,14 @@ class FeedbackController: UIViewController, UITextViewDelegate {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(sendFeedback))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancel))
         
-        self.emailTextField.becomeFirstResponder()
         self.hideKeyboardWhenTappedAround()
         
         setUpPlaceholderLabel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.emailTextField.becomeFirstResponder()
     }
     
     private func setUpPlaceholderLabel() {
