@@ -17,6 +17,8 @@
 		56559C482036B03500E5527E /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56559C472036B03500E5527E /* Feedback.swift */; };
 		569271971F9562270091B976 /* DiningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569271961F9562270091B976 /* DiningCell.swift */; };
 		5692719A1F9564AD0091B976 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569271991F9564AD0091B976 /* Extensions.swift */; };
+		56D4C94E203FF88A0051FFD6 /* MealPlanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D4C94C203FF88A0051FFD6 /* MealPlanController.swift */; };
+		56D4C94F203FF88A0051FFD6 /* MealPlanController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56D4C94D203FF88A0051FFD6 /* MealPlanController.xib */; };
 		56F53DBC1F92CB8B0048C807 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F53DBB1F92CB8B0048C807 /* AppDelegate.swift */; };
 		56F53DC11F92CB8B0048C807 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56F53DBF1F92CB8B0048C807 /* Main.storyboard */; };
 		56F53DC31F92CB8B0048C807 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56F53DC21F92CB8B0048C807 /* Assets.xcassets */; };
@@ -40,6 +42,8 @@
 		569271961F9562270091B976 /* DiningCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningCell.swift; sourceTree = "<group>"; };
 		569271991F9564AD0091B976 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		56D3F378848DA88BF298F644 /* Pods-PrinFoodPlus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrinFoodPlus.release.xcconfig"; path = "Pods/Target Support Files/Pods-PrinFoodPlus/Pods-PrinFoodPlus.release.xcconfig"; sourceTree = "<group>"; };
+		56D4C94C203FF88A0051FFD6 /* MealPlanController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPlanController.swift; sourceTree = "<group>"; };
+		56D4C94D203FF88A0051FFD6 /* MealPlanController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MealPlanController.xib; sourceTree = "<group>"; };
 		56F53DB81F92CB8B0048C807 /* PrinFoodPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrinFoodPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56F53DBB1F92CB8B0048C807 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56F53DC01F92CB8B0048C807 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -134,6 +138,16 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		56D4C94B203FF8630051FFD6 /* MealPlan */ = {
+			isa = PBXGroup;
+			children = (
+				56D4C94C203FF88A0051FFD6 /* MealPlanController.swift */,
+				56D4C94D203FF88A0051FFD6 /* MealPlanController.xib */,
+			);
+			name = MealPlan;
+			path = Feedback/MealPlan;
+			sourceTree = "<group>";
+		};
 		56F53DAF1F92CB8B0048C807 = {
 			isa = PBXGroup;
 			children = (
@@ -157,8 +171,9 @@
 			children = (
 				569271981F9564270091B976 /* Dining */,
 				56010B391F95821000DA639B /* Menu */,
-				56559C4620367B3900E5527E /* Feedback */,
 				56010B401F96F44700DA639B /* Pub */,
+				56D4C94B203FF8630051FFD6 /* MealPlan */,
+				56559C4620367B3900E5527E /* Feedback */,
 				56010B3A1F958F5F00DA639B /* Models */,
 				56F53DBB1F92CB8B0048C807 /* AppDelegate.swift */,
 				56F53DD21F9318CE0048C807 /* MainTabBarController.swift */,
@@ -239,6 +254,7 @@
 				56F53DC31F92CB8B0048C807 /* Assets.xcassets in Resources */,
 				56F53DC11F92CB8B0048C807 /* Main.storyboard in Resources */,
 				56559C4520367B3000E5527E /* FeedbackController.xib in Resources */,
+				56D4C94F203FF88A0051FFD6 /* MealPlanController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +332,7 @@
 				5692719A1F9564AD0091B976 /* Extensions.swift in Sources */,
 				56F53DBC1F92CB8B0048C807 /* AppDelegate.swift in Sources */,
 				569271971F9562270091B976 /* DiningCell.swift in Sources */,
+				56D4C94E203FF88A0051FFD6 /* MealPlanController.swift in Sources */,
 				56F53DD51F931AF10048C807 /* DiningController.swift in Sources */,
 				56010B3C1F958F6D00DA639B /* Dish.swift in Sources */,
 				56010B3E1F96F42900DA639B /* PubCell.swift in Sources */,

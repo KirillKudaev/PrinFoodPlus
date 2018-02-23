@@ -20,16 +20,19 @@ class MainTabBarController: UITabBarController {
         
         let homeNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "dining_unselected"), selectedImage: #imageLiteral(resourceName: "dining_selected"), rootViewController: DiningController(collectionViewLayout: UICollectionViewFlowLayout()))
         
-        let feedbackNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "feedback_unselected"), selectedImage: #imageLiteral(resourceName: "feedback_selected"), rootViewController: FeedbackController())
-        
         let userProfileNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "burger_unselected"), selectedImage: #imageLiteral(resourceName: "burger_selected"), rootViewController: PubController(collectionViewLayout: UICollectionViewFlowLayout()))
+        
+        let mealPlanNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "money_unselected"), selectedImage: #imageLiteral(resourceName: "money_selected"), rootViewController: MealPlanController())
+        
+        let feedbackNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "feedback_unselected"), selectedImage: #imageLiteral(resourceName: "feedback_selected"), rootViewController: FeedbackController())
         
         tabBar.tintColor = .white
         tabBar.barTintColor = UIColor.mainBlue()
         
         viewControllers = [homeNavController,
-                           feedbackNavController,
-                           userProfileNavController]
+                           userProfileNavController,
+                           mealPlanNavController,
+                           feedbackNavController]
         
         guard let items = tabBar.items else { return }
         
