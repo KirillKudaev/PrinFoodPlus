@@ -34,10 +34,16 @@ class MainTabBarController: UITabBarController {
                            mealPlanNavController,
                            feedbackNavController]
         
+        var accessibilityLabels: [String] = ["Dining",
+                                             "Pub",
+                                             "Meal Plan Calculator",
+                                             "Feedback"]
+        
         guard let items = tabBar.items else { return }
         
-        for item in items {
+        for (index, item) in items.enumerated() {
             item.imageInsets = UIEdgeInsets(top: 4, left: 0, bottom: -4, right: 0)
+            item.accessibilityLabel = accessibilityLabels[index]
         }
     }
     
