@@ -13,6 +13,6 @@ class MealPlanController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Meal Plan Calculator"
+        self.navigationItem.title = "Meal Plan Calculator"
     }
 }
