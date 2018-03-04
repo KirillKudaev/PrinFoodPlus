@@ -14,6 +14,5 @@ class MealPlanController: UIViewController {
         super.viewDidLoad()
 
         title = "Meal Plan Calculator"
-
     }
 }

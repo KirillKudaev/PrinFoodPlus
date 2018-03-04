@@ -171,7 +171,6 @@
 		56F53DBA1F92CB8B0048C807 /* PrinFoodPlus */ = {
 			isa = PBXGroup;
 			children = (
-				564B3279204B463000E4C9E6 /* TodayTomorrowHeader.swift */,
 				569271981F9564270091B976 /* Dining */,
 				56010B391F95821000DA639B /* Menu */,
 				56010B401F96F44700DA639B /* Pub */,
@@ -179,6 +178,7 @@
 				56559C4620367B3900E5527E /* Feedback */,
 				56010B3A1F958F5F00DA639B /* Models */,
 				56F53DBB1F92CB8B0048C807 /* AppDelegate.swift */,
+				564B3279204B463000E4C9E6 /* TodayTomorrowHeader.swift */,
 				56F53DD21F9318CE0048C807 /* MainTabBarController.swift */,
 				56F53DBF1F92CB8B0048C807 /* Main.storyboard */,
 				56F53DC41F92CB8B0048C807 /* LaunchScreen.storyboard */,
