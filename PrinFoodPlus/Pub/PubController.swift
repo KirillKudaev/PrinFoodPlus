@@ -12,7 +12,15 @@ import Firebase
 
 private let reuseIdentifier = "Cell"
 
-class PubController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class PubController: UICollectionViewController, UICollectionViewDelegateFlowLayout, TodayTomorrowHeaderDelegate {
+    
+    private var isTomorrow = false
+    private let headerHeight: CGFloat = 100.0
+
+    func didChangeDay(tomorrow: Bool) {
+        isTomorrow = tomorrow
+        fetchTimes(tomorrow: tomorrow)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,32 +33,26 @@ class PubController: UICollectionViewController, UICollectionViewDelegateFlowLay
         collectionView?.backgroundView = UIImageView(image: UIImage(named: "fries"))
         collectionView?.backgroundView?.contentMode = .scaleAspectFill
 
+        collectionView?.register(TodayTomorrowHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerId")
         self.collectionView!.register(PubCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
-        fetchTimes(tomorrow: false)
-        fetchTimes(tomorrow: true)
+        fetchTimes(tomorrow: isTomorrow)
         
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
     
     @objc func willEnterForeground() {
-        fetchTimes(tomorrow: false)
-        fetchTimes(tomorrow: true)
+        fetchTimes(tomorrow: isTomorrow)
     }
     
-    var todayTimes = [String: Any]()
-    var tomorrowTimes = [String: Any]()
+    var mealTimes = [String: Any]()
     fileprivate func fetchTimes(tomorrow: Bool) {
         
         guard let dayOfWeek = Date.getDayOfWeek(tomorrow: tomorrow) else { return }
         Database.database().reference().child("pubTimes").child(dayOfWeek).observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let times = snapshot.value as? [String: Any] else { return }
-            if !tomorrow {
-                self.todayTimes = times
-            } else {
-                self.tomorrowTimes = times
-            }
+            self.mealTimes = times
             
             self.collectionView?.reloadData()
             
@@ -74,7 +76,7 @@ class PubController: UICollectionViewController, UICollectionViewDelegateFlowLay
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let height = (view.frame.height - UIApplication.shared.statusBarFrame.height -
-            self.navigationController!.navigationBar.frame.height - (self.tabBarController?.tabBar.frame.height)!) / 3
+            self.navigationController!.navigationBar.frame.height - headerHeight - (self.tabBarController?.tabBar.frame.height)!) / 3
         return CGSize(width: view.frame.width, height: height)
     }
     
@@ -84,20 +86,31 @@ class PubController: UICollectionViewController, UICollectionViewDelegateFlowLay
         switch indexPath.item {
         case 0:
             cell.mealName = "Breakfast"
-            guard let time = todayTimes["breakfast"] as? String else { break }
+            guard let time = mealTimes["breakfast"] as? String else { break }
             cell.timesOpen = time
         case 1:
             cell.mealName = "Lunch"
-            guard let time = todayTimes["lunch"] as? String else { break }
+            guard let time = mealTimes["lunch"] as? String else { break }
             cell.timesOpen = time
         case 2:
             cell.mealName = "Dinner"
-            guard let time = todayTimes["dinner"] as? String else { break }
+            guard let time = mealTimes["dinner"] as? String else { break }
             cell.timesOpen = time
         default:
             break
         }
         
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerId", for: indexPath) as! TodayTomorrowHeader
+        
+        header.delegate = self
+        return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: headerHeight)
     }
 }

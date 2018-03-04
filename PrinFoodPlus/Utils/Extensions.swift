@@ -18,6 +18,9 @@ extension UIColor {
         return UIColor.rgb(red: 18, green: 79, blue: 133)
     }
     
+    static func mainLightBlue() -> UIColor {
+        return UIColor.rgb(red: 170, green: 210, blue: 255)
+    }
 }
 extension UIView {
     func anchor(top: NSLayoutYAxisAnchor?, left: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, right: NSLayoutXAxisAnchor?,  paddingTop: CGFloat, paddingLeft: CGFloat, paddingBottom: CGFloat, paddingRight: CGFloat, width: CGFloat, height: CGFloat) {
@@ -76,8 +79,17 @@ extension Date {
         return weekDays[weekDay]
     }
     
-    static func getEpochBeginningOfToday() -> Int? {
-        let date = Date()
+    static func getEpochBeginningOfToday(isTomorrow: Bool) -> Int? {
+        var date = Date()
+        
+        if isTomorrow {
+            guard let tomorrowDate = Calendar.current.date(byAdding: .day, value: 1, to: date) else {
+                return nil
+            }
+            
+            date = tomorrowDate
+        }
+        
         let calendar = Calendar.current
         var dateComponents = DateComponents()
         
@@ -89,8 +101,29 @@ extension Date {
         let dateTime = Calendar.current.date(from: dateComponents)
         
         guard let timeInterval = dateTime?.timeIntervalSince1970 else { return nil }
-        
+
         return Int((timeInterval * 1000.0).rounded())
+    }
+    
+    static func getFormattedDate(tomorrow: Bool) -> String {
+        
+        let date: Date
+        let result: String
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, MMMM d"
+        
+        if tomorrow {
+            guard let optDate = Calendar.current.date(byAdding: .day, value: 1, to: Date()) else {
+                return ""
+            }
+            result = formatter.string(from: optDate)
+        } else {
+            date = Date()
+            result = formatter.string(from: date)
+        }
+        
+        return result
     }
 }
 

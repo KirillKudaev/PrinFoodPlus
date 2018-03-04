@@ -9,9 +9,17 @@
 import UIKit
 import Firebase
 
-private let reuseIdentifier = "Cell"
-
-class DiningController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class DiningController: UICollectionViewController, UICollectionViewDelegateFlowLayout, TodayTomorrowHeaderDelegate {
+    
+    private let cellId = "cellId"
+    private let headerId = "headerId"
+    private let headerHeight: CGFloat = 100.0
+    private var isTomorrow = false
+    
+    func didChangeDay(tomorrow: Bool) {
+        isTomorrow = tomorrow
+        fetchTimes(tomorrow: tomorrow)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,28 +32,23 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
         collectionView?.backgroundView = UIImageView(image: UIImage(named: "smoothie"))
         collectionView?.backgroundView?.contentMode = .scaleAspectFill
 
-        self.collectionView!.register(DiningCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView?.register(TodayTomorrowHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerId")
+        collectionView?.register(DiningCell.self, forCellWithReuseIdentifier: cellId)
         
-        fetchTimes(tomorrow: false)
-        fetchTimes(tomorrow: true)
+        fetchTimes(tomorrow: isTomorrow)
         
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
     
-    var todayTimes = [String: Any]()
-    var tomorrowTimes = [String: Any]()
+    var mealTimes = [String: Any]()
     fileprivate func fetchTimes(tomorrow: Bool) {
        
         guard let dayOfWeek = Date.getDayOfWeek(tomorrow: tomorrow) else { return }
         Database.database().reference().child("diningTimes").child(dayOfWeek).observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let times = snapshot.value as? [String: Any] else { return }
-            if !tomorrow {
-                self.todayTimes = times
-            } else {
-                self.tomorrowTimes = times
-            }
-            
+
+            self.mealTimes = times
             self.collectionView?.reloadData()
 
         }) { (err) in
@@ -58,8 +61,7 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     @objc func willEnterForeground() {
-        fetchTimes(tomorrow: false)
-        fetchTimes(tomorrow: true)
+        fetchTimes(tomorrow: isTomorrow)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -73,25 +75,25 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let height = (view.frame.height - UIApplication.shared.statusBarFrame.height -
-            self.navigationController!.navigationBar.frame.height - (self.tabBarController?.tabBar.frame.height)!) / 3
+            self.navigationController!.navigationBar.frame.height - headerHeight - (self.tabBarController?.tabBar.frame.height)!) / 3
         return CGSize(width: view.frame.width, height: height)
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! DiningCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! DiningCell
                 
         switch indexPath.item {
         case 0:
             cell.mealName = "Breakfast"
-            guard let time = todayTimes["breakfast"] as? String else { break }
+            guard let time = mealTimes["breakfast"] as? String else { break }
             cell.timesOpen = time
         case 1:
             cell.mealName = "Lunch"
-            guard let time = todayTimes["lunch"] as? String else { break }
+            guard let time = mealTimes["lunch"] as? String else { break }
             cell.timesOpen = time
         case 2:
             cell.mealName = "Dinner"
-            guard let time = todayTimes["dinner"] as? String else { break }
+            guard let time = mealTimes["dinner"] as? String else { break }
             cell.timesOpen = time
         default:
             break
@@ -102,6 +104,8 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let menuController = MenuController(collectionViewLayout: UICollectionViewFlowLayout())
+        
+        menuController.isTomorrow = isTomorrow
 
         switch indexPath.item {
         case 0:
@@ -118,5 +122,17 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
         }
         
         navigationController?.pushViewController(menuController, animated: true)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerId", for: indexPath) as! TodayTomorrowHeader
+        
+        header.delegate = self
+        
+        return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: headerHeight)
     }
 }

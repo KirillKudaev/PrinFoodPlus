@@ -13,6 +13,7 @@ private let reuseIdentifier = "Cell"
 
 class MenuController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    var isTomorrow = false
     var mealName: String?
     
     override func viewDidLoad() {
@@ -31,7 +32,7 @@ class MenuController: UICollectionViewController, UICollectionViewDelegateFlowLa
         guard var mealName = mealName else { return }
         mealName = mealName.lowercased()
         
-        guard let epoch = Date.getEpochBeginningOfToday() else { return }
+        guard let epoch = Date.getEpochBeginningOfToday(isTomorrow: isTomorrow) else { return }
         Database.database().reference().child("meals").child(String(epoch)).child(mealName).observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let dictionaries = snapshot.value as? [String: Any] else { return }

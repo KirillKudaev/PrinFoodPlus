@@ -12,6 +12,7 @@
 		56010B381F9581EE00DA639B /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56010B371F9581EE00DA639B /* MenuController.swift */; };
 		56010B3C1F958F6D00DA639B /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56010B3B1F958F6D00DA639B /* Dish.swift */; };
 		56010B3E1F96F42900DA639B /* PubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56010B3D1F96F42900DA639B /* PubCell.swift */; };
+		564B327A204B463000E4C9E6 /* TodayTomorrowHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564B3279204B463000E4C9E6 /* TodayTomorrowHeader.swift */; };
 		56559C4420367B3000E5527E /* FeedbackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56559C4220367B3000E5527E /* FeedbackController.swift */; };
 		56559C4520367B3000E5527E /* FeedbackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56559C4320367B3000E5527E /* FeedbackController.xib */; };
 		56559C482036B03500E5527E /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56559C472036B03500E5527E /* Feedback.swift */; };
@@ -36,6 +37,7 @@
 		56010B371F9581EE00DA639B /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		56010B3B1F958F6D00DA639B /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		56010B3D1F96F42900DA639B /* PubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubCell.swift; sourceTree = "<group>"; };
+		564B3279204B463000E4C9E6 /* TodayTomorrowHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTomorrowHeader.swift; sourceTree = "<group>"; };
 		56559C4220367B3000E5527E /* FeedbackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackController.swift; sourceTree = "<group>"; };
 		56559C4320367B3000E5527E /* FeedbackController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackController.xib; sourceTree = "<group>"; };
 		56559C472036B03500E5527E /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 		56F53DBA1F92CB8B0048C807 /* PrinFoodPlus */ = {
 			isa = PBXGroup;
 			children = (
+				564B3279204B463000E4C9E6 /* TodayTomorrowHeader.swift */,
 				569271981F9564270091B976 /* Dining */,
 				56010B391F95821000DA639B /* Menu */,
 				56010B401F96F44700DA639B /* Pub */,
@@ -336,6 +339,7 @@
 				56F53DD51F931AF10048C807 /* DiningController.swift in Sources */,
 				56010B3C1F958F6D00DA639B /* Dish.swift in Sources */,
 				56010B3E1F96F42900DA639B /* PubCell.swift in Sources */,
+				564B327A204B463000E4C9E6 /* TodayTomorrowHeader.swift in Sources */,
 				56F53DD31F9318CE0048C807 /* MainTabBarController.swift in Sources */,
 				56010B361F9581DD00DA639B /* MenuCell.swift in Sources */,
 			);
