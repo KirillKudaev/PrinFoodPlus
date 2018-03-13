@@ -48,13 +48,9 @@ class DiningCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setupLabels()
-        setupSeparatorView()
-
-        addSubview(arrowImageView)
-        
-        arrowImageView.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 30, width: 30, height: 30)
-        arrowImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        setUpLabels()
+        setUpSeparatorView()
+        setUpArrowImageView()
     }
     
     @available(*, unavailable)
@@ -62,7 +58,14 @@ class DiningCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    fileprivate func setupLabels() {
+    fileprivate func setUpArrowImageView() {
+        addSubview(arrowImageView)
+        
+        arrowImageView.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 30, width: 30, height: 30)
+        arrowImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+    }
+    
+    fileprivate func setUpLabels() {
         let stackView = UIStackView(arrangedSubviews: [mealNameLabel, timesOpenLabel])
         
         stackView.axis = .vertical
@@ -74,7 +77,7 @@ class DiningCell: UICollectionViewCell {
         stackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
-    fileprivate func setupSeparatorView() {
+    fileprivate func setUpSeparatorView() {
         let separatorView = UIView()
         separatorView.backgroundColor = .white
         addSubview(separatorView)

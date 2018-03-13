@@ -9,19 +9,25 @@
 import UIKit
 import Firebase
 
-private let reuseIdentifier = "Cell"
+enum MealPlace {
+    case diningRoom
+    case pub
+}
 
 class MenuController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    private let cellId = "cellId"
+
     var isTomorrow = false
     var mealName: String?
+    var mealPlace: MealPlace?
     
     override func viewDidLoad() {
         super.viewDidLoad()
                 
         collectionView?.backgroundColor = .white
         
-        self.collectionView!.register(MenuCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(MenuCell.self, forCellWithReuseIdentifier: cellId)
         
         fetchDishes()
     }
@@ -29,11 +35,22 @@ class MenuController: UICollectionViewController, UICollectionViewDelegateFlowLa
     var dishes = [Dish]()
     fileprivate func fetchDishes() {
         
+        let mealPlaceDatabaseName: String
+        
+        guard let mealPlace = mealPlace  else { return }
+        
+        switch mealPlace {
+        case .diningRoom:
+            mealPlaceDatabaseName = "meals"
+        case .pub:
+            mealPlaceDatabaseName = "pubMeals"
+        }
+        
         guard var mealName = mealName else { return }
         mealName = mealName.lowercased()
         
         guard let epoch = Date.getEpochBeginningOfToday(isTomorrow: isTomorrow) else { return }
-        Database.database().reference().child("meals").child(String(epoch)).child(mealName).observeSingleEvent(of: .value, with: { (snapshot) in
+        Database.database().reference().child(mealPlaceDatabaseName).child(String(epoch)).child(mealName).observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             
@@ -73,7 +90,7 @@ class MenuController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MenuCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MenuCell
         
         if (dishes.count  == 0) {
             cell.dishName = "Couldn't download menu 😔"

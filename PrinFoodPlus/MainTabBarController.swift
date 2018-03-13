@@ -31,12 +31,12 @@ class MainTabBarController: UITabBarController {
         
         viewControllers = [homeNavController,
                            userProfileNavController,
-                           mealPlanNavController,
+                           /*mealPlanNavController,*/
                            feedbackNavController]
         
-        var accessibilityLabels: [String] = ["Dining",
+        let accessibilityLabels: [String] = ["Dining",
                                              "Pub",
-                                             "Meal Plan Calculator",
+                                             /*"Meal Plan Calculator",*/
                                              "Feedback"]
         
         guard let items = tabBar.items else { return }

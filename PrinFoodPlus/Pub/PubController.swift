@@ -10,13 +10,13 @@
 import UIKit
 import Firebase
 
-private let reuseIdentifier = "Cell"
-
 class PubController: UICollectionViewController, UICollectionViewDelegateFlowLayout, TodayTomorrowHeaderDelegate {
     
-    private var isTomorrow = false
+    private let cellId = "cellId"
+    private let headerId = "headerId"
     private let headerHeight: CGFloat = 100.0
-
+    private var isTomorrow = false
+    
     func didChangeDay(tomorrow: Bool) {
         isTomorrow = tomorrow
         fetchTimes(tomorrow: tomorrow)
@@ -30,19 +30,15 @@ class PubController: UICollectionViewController, UICollectionViewDelegateFlowLay
         collectionView?.backgroundColor = .white
         collectionView?.isScrollEnabled = false
         
-        collectionView?.backgroundView = UIImageView(image: UIImage(named: "fries"))
+        collectionView?.backgroundView = UIImageView(image: UIImage(named: "wings"))
         collectionView?.backgroundView?.contentMode = .scaleAspectFill
-
+        
         collectionView?.register(TodayTomorrowHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerId")
-        self.collectionView!.register(PubCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView?.register(PubCell.self, forCellWithReuseIdentifier: cellId)
         
         fetchTimes(tomorrow: isTomorrow)
         
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
-    }
-    
-    @objc func willEnterForeground() {
-        fetchTimes(tomorrow: isTomorrow)
     }
     
     var mealTimes = [String: Any]()
@@ -58,11 +54,15 @@ class PubController: UICollectionViewController, UICollectionViewDelegateFlowLay
             
         }) { (err) in
             if !tomorrow {
-                print("Failed to fetch dining times for today:", err)
+                print("Failed to fetch pub times for today:", err)
             } else {
-                print("Failed to fetch dining times for tomorrow:", err)
+                print("Failed to fetch pub times for tomorrow:", err)
             }
         }
+    }
+    
+    @objc func willEnterForeground() {
+        fetchTimes(tomorrow: isTomorrow)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -81,7 +81,7 @@ class PubController: UICollectionViewController, UICollectionViewDelegateFlowLay
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PubCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PubCell
         
         switch indexPath.item {
         case 0:
@@ -103,10 +103,34 @@ class PubController: UICollectionViewController, UICollectionViewDelegateFlowLay
         return cell
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let menuController = MenuController(collectionViewLayout: UICollectionViewFlowLayout())
+        
+        menuController.isTomorrow = isTomorrow
+        menuController.mealPlace = .pub
+
+        switch indexPath.item {
+        case 0:
+            menuController.navigationItem.title = "Breakfast"
+            menuController.mealName = "Breakfast"
+        case 1:
+            menuController.navigationItem.title = "Lunch"
+            menuController.mealName = "Lunch"
+        case 2:
+            menuController.navigationItem.title = "Dinner"
+            menuController.mealName = "Dinner"
+        default:
+            break
+        }
+        
+        navigationController?.pushViewController(menuController, animated: true)
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerId", for: indexPath) as! TodayTomorrowHeader
         
         header.delegate = self
+        
         return header
     }
     

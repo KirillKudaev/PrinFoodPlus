@@ -106,6 +106,7 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
         let menuController = MenuController(collectionViewLayout: UICollectionViewFlowLayout())
         
         menuController.isTomorrow = isTomorrow
+        menuController.mealPlace = .diningRoom
 
         switch indexPath.item {
         case 0:
