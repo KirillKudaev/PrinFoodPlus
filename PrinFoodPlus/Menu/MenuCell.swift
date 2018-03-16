@@ -23,7 +23,7 @@ class MenuCell: UICollectionViewCell {
                 break
             }
             
-            dishNameLabel.text = "\(dishName ?? "") \(dishEmoji ?? "")"
+            dishNameLabel.text = "\(dishEmoji ?? "") \(dishName ?? "")"
         }
     }
     
