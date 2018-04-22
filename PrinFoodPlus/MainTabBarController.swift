@@ -22,7 +22,7 @@ class MainTabBarController: UITabBarController {
         
         let userProfileNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "burger_unselected"), selectedImage: #imageLiteral(resourceName: "burger_selected"), rootViewController: PubController(collectionViewLayout: UICollectionViewFlowLayout()))
         
-        let mealPlanNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "money_unselected"), selectedImage: #imageLiteral(resourceName: "money_selected"), rootViewController: MealPlanController())
+//        let mealPlanNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "money_unselected"), selectedImage: #imageLiteral(resourceName: "money_selected"), rootViewController: MealPlanController())
         
         let feedbackNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "feedback_unselected"), selectedImage: #imageLiteral(resourceName: "feedback_selected"), rootViewController: FeedbackController())
         

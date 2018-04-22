@@ -125,6 +125,42 @@ extension Date {
         
         return result
     }
+    
+    static func printEpochForNextDays(numberOfDays: Int) {
+        for n in 0...numberOfDays {
+            
+            var date = Date()
+
+            guard let tomorrowDate = Calendar.current.date(byAdding: .day, value: n, to: date) else {
+                print("epoch print error")
+                return
+            }
+            date = tomorrowDate
+            
+            let calendar = Calendar.current
+            var dateComponents = DateComponents()
+            
+            dateComponents.day = calendar.component(.day, from: date)
+            dateComponents.month = calendar.component(.month, from: date)
+            dateComponents.year = calendar.component(.year, from: date)
+            dateComponents.timeZone = TimeZone(abbreviation: "CST")
+            
+            let dateTime = Calendar.current.date(from: dateComponents)
+            
+            guard let timeInterval = dateTime?.timeIntervalSince1970 else {
+                print("epoch print error")
+                return
+            }
+            
+            if n == 0 {
+                print("Today: \(Int((timeInterval * 1000.0).rounded()))")
+            } else if n == 1 {
+                print("Tomorrow: \(Int((timeInterval * 1000.0).rounded()))")
+            } else {
+                print(Int((timeInterval * 1000.0).rounded()))
+            }
+        }
+    }
 }
 
 extension UIViewController {

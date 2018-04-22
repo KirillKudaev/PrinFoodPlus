@@ -38,6 +38,8 @@ class DiningController: UICollectionViewController, UICollectionViewDelegateFlow
         fetchTimes(tomorrow: isTomorrow)
         
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        
+        Date.printEpochForNextDays(numberOfDays: 14)
     }
     
     var mealTimes = [String: Any]()
